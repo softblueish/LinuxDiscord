@@ -13,7 +13,7 @@ bot = commands.Bot(command_prefix='$')
 @bot.command(name='bash')
 async def bash(ctx, command):
     
-    rawstring = str(subprocess.check_output(command, shell=True)).split('\\n')
+    rawstring = str(subprocess.check_output(command, shell=True), 'utf8').split('\\n')
     for i in range(len(rawstring)):
         await ctx.send(f"```{rawstring[i]}```")
 
