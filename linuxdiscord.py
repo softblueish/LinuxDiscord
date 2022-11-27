@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 import os, subprocess, rules
 from discord.ext import commands
-from dotenv import load_dotenv
+import discord
 
-load_dotenv('token.env')
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = ''
+intents = discord.Intents.default();
+intents.message_content = True
 
-bot = commands.Bot(command_prefix='$')
+bot = commands.Bot(intents=intents, command_prefix='$', description='Run a shell command')
 
 @bot.command(name='bash')
 async def bash(ctx, command):
@@ -16,9 +17,9 @@ async def bash(ctx, command):
             print(f"Blacklisted Command Attempted: {command}")
             return
 
-    rawstring = str(subprocess.check_output(command, shell=True), 'utf8').split('\\n')
+    rawstring = str(subprocess.check_output(command, shell=True), 'utf8').split('\n')
     print(f"Command Used: {command}")
     for i in range(len(rawstring)):
-        await ctx.send(f"```{rawstring[i]}```")
+        await ctx.send(f"``{rawstring[i]} ``")
 
 bot.run(TOKEN)
