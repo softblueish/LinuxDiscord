@@ -3,7 +3,7 @@ import os, subprocess, rules
 from discord.ext import commands
 import discord
 
-TOKEN = ''
+TOKEN = 'ODg2MzM2NTU2NTE5MDE4NTk2.GZN3Uj.NAi9DeYrarlspbh-h5hjmDSjRTdo6GGrJi3QWw'
 intents = discord.Intents.default();
 intents.message_content = True
 
